@@ -7,10 +7,10 @@ import Details from "../views/details";
 const Character = (props) => {
 
   const { store, actions } = useContext(Context);
-  const [ Click , setClick ] = useState(false);
+  const [ click , setClick ] = useState(false);
  
   const handleClick = () => {actions.addFavorites(props.name)
-    Click == true ? setClick(false) : setClick(true) 
+    // Click == true ? setClick(false) : setClick(true) 
   }
   return (
   
@@ -21,9 +21,9 @@ const Character = (props) => {
           <p className="card-text"></p>
           <div className="card-body d-flex justify-content-between">
           <Link to={`details/${props.category}/${props.uid}`} className="btn btn-dark mt-2">Read more</Link>
-          <button onClick={(handleClick)}  className={ Click === true ? "btn btn-danger border-0" : " btn btn-outline-danger border-0" }>
-            <i className="far fa-heart"></i>
-          </button>
+          <div onClick={handleClick}  className="d-flex align-items-center">
+            {store.favorites.includes(props.name) ? <i className="fas fa-heart text-danger"></i> : <i className="far fa-heart text-danger"></i>}
+          </div>
           </div>
         </div>
       </div>

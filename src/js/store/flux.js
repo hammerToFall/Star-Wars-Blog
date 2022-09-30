@@ -20,10 +20,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 	    planets: [],
 	    vehicles: [],
       favorites: [],
+      disable: false,
+      index: 0,
 
-
-    
     },
+
     actions: {
       // Use getActions to call a function within a fuction
       exampleFunction: () => {
@@ -48,9 +49,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       addFavorites: (item) => {
 
         const store = getStore();
-
-        setStore({ favorites: [...store.favorites, item] });
-
+        if (!store.favorites.includes(item)) {
+          setStore({ favorites : [...store.favorites, item] })
+        } else {
+          setStore ({ favorites : store.favorites.filter((name) =>
+            name !== item) })
+        }
       },
 
       deleteFavorites: (index) => {
@@ -58,7 +62,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
 
         setStore({ favorites: store.favorites.filter((favorites, i) => i !== index)})
-
 
       },
 

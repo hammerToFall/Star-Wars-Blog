@@ -49,6 +49,7 @@ export const Navbar = () => {
                     class="fas fa-trash-alt"
                     onClick={() => {
                       actions.deleteFavorites(index);
+                      store.disable = false;
                     }}
                   ></i>
                 </li>
